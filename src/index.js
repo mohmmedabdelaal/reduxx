@@ -1,7 +1,22 @@
-import { compose, pipe } from 'lodash/fp';
+// import { compose, pipe } from 'lodash/fp';
+
+import { Map } from 'immutable';
 
 const app = document.querySelector('#app');
 
+const wikiPage = Map({
+  wName: 'Mohamed abdelaal',
+  age: 36,
+  addition: {
+    hobbies: 'Fifa',
+    music: 'Munir',
+  },
+});
+
+const modWiki = wikiPage.set('age', 20);
+
+console.log(wikiPage.toJS());
+console.log(modWiki.toJS());
 // let dollar = givMeDollar()();
 // console.log(dollar);
 // let myDollar = dollar();
@@ -19,9 +34,9 @@ const app = document.querySelector('#app');
 
 //// piping
 
-const multiple = (a) => (b) => a * b;
+// const multiple = (a) => (b) => a * b;
 
-console.log(multiple(10)(20));
+// console.log(multiple(10)(20));
 
 // const productNames = ['tv', 'caset', 'Laptop', 'mouse'];
 
@@ -30,20 +45,20 @@ console.log(multiple(10)(20));
 //   .filter((pr) => pr !== 'CASET');
 // console.log(upperProducts);
 
-const header4 = document.createElement('h4');
-const header2 = document.createElement('h2');
+// const header4 = document.createElement('h4');
+// const header2 = document.createElement('h2');
 
-const trim = (str) => str.trim();
-const lowerCase = (str) => str.toUpperCase();
-const trimHeader = (input) => (header4.textContent = input);
-const appendApp = (input) => app.append(input);
+// const trim = (str) => str.trim();
+// const lowerCase = (str) => str.toUpperCase();
+// const trimHeader = (elem) => (input) => (elem.textContent = input);
+// const appendApp = (input) => app.append(input);
 
-const transformation = pipe(trim, lowerCase, trimHeader);
+// const transformation = pipe(trim, lowerCase, trimHeader(header2));
 
-const phrase = '  I love Javascript Sooooo much  and it"s ok';
+// const phrase = '  I love Javascript Sooooo much  and it"s ok';
 
-header2.textContent = 'Mr x coming soon';
+// console.log(transformation(phrase));
 
-transformation(phrase);
+// appendApp(header2);
 
-appendApp(header4);
+///
