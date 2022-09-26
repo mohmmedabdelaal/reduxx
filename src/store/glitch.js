@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
 let curId = 0;
 
-const slice = createSlice({
-  name: 'Glitch',
-  initialState,
+const glitchSlice = createSlice({
+  name: 'glitch',
+  initialState: [],
   reducers: {
     addGlitch: (state, action) => {
       state.push({
@@ -20,8 +19,6 @@ const slice = createSlice({
   },
 });
 
-console.log(slice);
+export const { addGlitch, removeGlitch } = glitchSlice.actions;
 
-export const { addProduct, removeProduct } = slice.actions;
-
-export default slice.reducer;
+export default glitchSlice.reducer;
