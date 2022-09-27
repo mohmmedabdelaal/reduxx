@@ -13,17 +13,17 @@ const glitches = [
   { id: 4, description: 'glitch 4' },
 ];
 
-app.get('api/glitch', (req, res) => {
+app.get('/api/glitch', (req, res) => {
   res.json(glitches);
 });
 
-app.post('api/glitch', (req, res) => {
+app.post('/api/glitch', (req, res) => {
   const bug = { id: Date.now(), resolved: false, ...req.body };
   glitches.push(bug);
   res.json(bug);
 });
 
-app.patch('api/glitch/:id', (req, res) => {
+app.patch('/api/glitch/:id', (req, res) => {
   const index = glitches.findIndex((g) => g.id === parseInt(req.params.id));
   const glitch = glitches[index];
   if ('resolved' in req.body) glitch.resolved = req.body.resolved;

@@ -8,13 +8,12 @@ store.subscribe(() => {
   console.log('start subscribe');
 });
 
-// store.dispatch((dispatch, getState) => {
-//   dispatch({ type: 'addUsers', users: ['one', 'two'] });
-//   console.log(getState);
-// });
+store.dispatch({
+  type: 'apiRequestBegan',
+  payload: {
+    url: '/glitch',
 
-store.dispatch({ type: 'ADD_TOAST', payload: { message: 'An error happen' } });
-
-// store.dispatch(addUsers({ name: 'Mohamed' }));
-
-// store.dispatch(addGlitch({ desc: 'chrome not lunching' }));
+    onSuccess: 'requestSuccess',
+    onError: 'requestFailed',
+  },
+});
