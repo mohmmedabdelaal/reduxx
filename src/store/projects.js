@@ -3,15 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 let newId = 0;
 
 const slice = createSlice({
-  name: 'project',
+  name: 'projects',
   initialState: [],
   reducers: {
-    projectAdded: (state, action) => {
+    addProject: (state, action) => {
       state.push({ id: ++newId, name: action.payload.name });
     },
   },
 });
 
-export const { projectAdded } = slice.actions;
-
+const { addProject } = slice.actions;
 export default slice.reducer;

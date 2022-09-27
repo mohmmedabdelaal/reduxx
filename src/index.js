@@ -1,14 +1,20 @@
-import configureStore from './store/configureStore';
-import { projectAdded } from './store/projects';
-import { addGlitch } from './store/glitch';
+import configureStore from './store/configureAppStore';
+import { addGlitch } from './store/glitches';
+import { addUsers } from './store/users';
 
 const store = configureStore();
 
 store.subscribe(() => {
-  console.log('store created');
+  console.log('start subscribe');
 });
 
-store.dispatch(projectAdded({ name: 'project 1' }));
-store.dispatch(addGlitch({ description: 'TV' }));
+// store.dispatch((dispatch, getState) => {
+//   dispatch({ type: 'addUsers', users: ['one', 'two'] });
+//   console.log(getState);
+// });
 
-console.log(store.getState());
+store.dispatch({ type: 'ADD_TOAST', payload: { message: 'An error happen' } });
+
+// store.dispatch(addUsers({ name: 'Mohamed' }));
+
+// store.dispatch(addGlitch({ desc: 'chrome not lunching' }));
