@@ -1,6 +1,5 @@
 import configureStore from './store/configureAppStore';
-import { addGlitch } from './store/glitches';
-import { addUsers } from './store/users';
+import { apiCallBegan, apiCallFailed, apiCallReceived } from './store/api';
 
 const store = configureStore();
 
@@ -8,12 +7,9 @@ store.subscribe(() => {
   console.log('start subscribe');
 });
 
-store.dispatch({
-  type: 'apiRequestBegan',
-  payload: {
+store.dispatch(
+  apiCallBegan({
     url: '/glitch',
-
-    onSuccess: 'requestSuccess',
-    onError: 'requestFailed',
-  },
-});
+    onSuccess: apiCallReceived.type,
+  })
+);

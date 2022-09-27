@@ -1,37 +1,30 @@
 import axios from 'axios';
-
-const action = {
-  type: 'apiRequestBegan',
-  payload: {
-    url: '/glitch',
-    method: 'GET',
-    data: {},
-    onSuccess: 'requestSuccess',
-    onError: 'requestFailed',
-  },
-};
+import { apiCallBegan, apiCallFailed, apiCallReceived } from '../api';
 
 const api =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
-    if (action.type !== 'apiRequestBegan') return next(action);
-    next(action);
+    if (action.type !== apiCallBegan.type) return next(action);
 
-    const { url, method, data, onError, onSuccess } = action.payload;
+    const { url, method, data, onSuccess, onError } = action.payload;
+    next(action);
 
     try {
       const response = await axios.request({
-        baseURL: 'http://localhost:400045/api',
+        baseURL: 'http://localhost:4000/api',
         url,
-        method,
         data,
-        onError,
+        method,
         onSuccess,
+        onError,
       });
-      dispatch({ type: 'requestSuccess', payload: response.data });
+      //general
+      dispatch(apiCallReceived(response.data));
+      if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {
-      dispatch({ type: 'requestFailed', payload: error.message });
+      dispatch(apiCallFailed(error.message));
+      if (onError) dispatch({ type: onError, payload: error.message });
     }
   };
 
